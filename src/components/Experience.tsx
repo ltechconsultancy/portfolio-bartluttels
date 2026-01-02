@@ -1,73 +1,71 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-
-interface ExperienceItem {
-  title: string
-  company: string
-  type: string
-  period: string
-  description: string
-  skills: string[]
-  highlight?: boolean
-}
-
-const experiences: ExperienceItem[] = [
-  {
-    title: 'AI Implementation Specialist',
-    company: 'ZeroPlex',
-    type: 'Part-time',
-    period: 'Sep 2025 - Present',
-    description: 'Helping regional businesses advance with AI implementation and strategy.',
-    skills: ['AI', 'Implementation', 'Strategy'],
-    highlight: true,
-  },
-  {
-    title: 'Owner',
-    company: 'LTech Consultancy',
-    type: 'Self-employed',
-    period: 'Jul 2023 - Present',
-    description: 'Providing AI consulting, data analytics, and business process optimization.',
-    skills: ['AI', 'Excel VBA', 'Data Analytics', 'Management'],
-    highlight: true,
-  },
-  {
-    title: 'Provincial Committee Member',
-    company: 'Provincie Limburg',
-    type: 'Political',
-    period: 'Sep 2024 - Present',
-    description: 'Focus areas: New Energy, Digitalization (AI, Data), and Finance.',
-    skills: ['Policy', 'Digitalization', 'Energy'],
-  },
-  {
-    title: 'Head of Program Committee',
-    company: 'BBB',
-    type: 'Political',
-    period: 'Jun 2025 - Aug 2025',
-    description: 'Led the creation of the entire election program for national elections, with focus on digitalization.',
-    skills: ['Project Management', 'Policy Writing'],
-  },
-  {
-    title: 'Data Analyst',
-    company: 'VDL Konings',
-    type: 'Freelance',
-    period: 'Nov 2022 - Sep 2024',
-    description: 'Created actionable insights through data cleaning and advanced dashboards.',
-    skills: ['Power Query', 'Excel VBA', 'Data Analytics'],
-  },
-  {
-    title: 'Co-Writer Election Program',
-    company: 'BBB',
-    type: 'Political',
-    period: 'May 2023 - Nov 2023',
-    description: 'One of 12 writers. Responsible for technology, science, and education. Program won NL-Digital award.',
-    skills: ['Policy Writing', 'Technology', 'Education'],
-    highlight: true,
-  },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Experience() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { t, language } = useLanguage()
+
+  const experiences = [
+    {
+      titleKey: 'exp.zeroplex.title',
+      company: 'ZeroPlex',
+      typeKey: 'experience.partTime',
+      period: language === 'nl' ? 'Sep 2025 - Heden' : 'Sep 2025 - Present',
+      descKey: 'exp.zeroplex.desc',
+      skills: ['AI', 'Implementation', 'Strategy'],
+      highlight: true,
+    },
+    {
+      titleKey: 'exp.ltech.title',
+      company: 'LTech Consultancy',
+      typeKey: 'experience.selfEmployed',
+      period: language === 'nl' ? 'Jul 2023 - Heden' : 'Jul 2023 - Present',
+      descKey: 'exp.ltech.desc',
+      skills: ['AI', 'Excel VBA', 'Data Analytics', 'Management'],
+      highlight: true,
+    },
+    {
+      titleKey: 'exp.provincie.title',
+      company: 'Provincie Limburg',
+      typeKey: 'experience.political',
+      period: language === 'nl' ? 'Sep 2024 - Heden' : 'Sep 2024 - Present',
+      descKey: 'exp.provincie.desc',
+      skills: ['Policy', 'Digitalization', 'Energy'],
+    },
+    {
+      titleKey: 'exp.bbb.title',
+      company: 'BBB',
+      typeKey: 'experience.political',
+      period: language === 'nl' ? 'Jun 2025 - Aug 2025' : 'Jun 2025 - Aug 2025',
+      descKey: 'exp.bbb.desc',
+      skills: ['Project Management', 'Policy Writing'],
+    },
+    {
+      titleKey: 'exp.vdl.title',
+      company: 'VDL Konings',
+      typeKey: 'experience.freelance',
+      period: 'Nov 2022 - Sep 2024',
+      descKey: 'exp.vdl.desc',
+      skills: ['Power Query', 'Excel VBA', 'Data Analytics'],
+    },
+    {
+      titleKey: 'exp.bbb2.title',
+      company: 'BBB',
+      typeKey: 'experience.political',
+      period: language === 'nl' ? 'Mei 2023 - Nov 2023' : 'May 2023 - Nov 2023',
+      descKey: 'exp.bbb2.desc',
+      skills: ['Policy Writing', 'Technology', 'Education'],
+      highlight: true,
+    },
+  ]
+
+  const getTypeColor = (typeKey: string) => {
+    if (typeKey === 'experience.political') return 'bg-cyber-pink/20 text-cyber-pink'
+    if (typeKey === 'experience.selfEmployed') return 'bg-cyber-cyan/20 text-cyber-cyan'
+    return 'bg-cyber-purple/20 text-cyber-purple'
+  }
 
   return (
     <section id="experience" className="relative py-32 z-10">
@@ -77,9 +75,9 @@ export default function Experience() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-20"
         >
-          <span className="text-cyber-cyan font-mono text-sm">// Career</span>
+          <span className="text-cyber-cyan font-mono text-sm">{t('experience.subtitle')}</span>
           <h2 className="text-4xl md:text-6xl font-bold mt-4">
-            Experience <span className="gradient-text">Timeline</span>
+            {t('experience.title1')} <span className="gradient-text">{t('experience.title2')}</span>
           </h2>
         </motion.div>
 
@@ -90,7 +88,7 @@ export default function Experience() {
 
           {experiences.map((exp, i) => (
             <motion.div
-              key={`${exp.company}-${exp.title}`}
+              key={`${exp.company}-${exp.titleKey}`}
               initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: i * 0.15, duration: 0.6 }}
@@ -118,19 +116,15 @@ export default function Experience() {
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
                   <div className="flex items-center gap-2 mb-2">
-                    <span className={`px-2 py-1 rounded text-xs font-mono ${
-                      exp.type === 'Political' ? 'bg-cyber-pink/20 text-cyber-pink' :
-                      exp.type === 'Self-employed' ? 'bg-cyber-cyan/20 text-cyber-cyan' :
-                      'bg-cyber-purple/20 text-cyber-purple'
-                    }`}>
-                      {exp.type}
+                    <span className={`px-2 py-1 rounded text-xs font-mono ${getTypeColor(exp.typeKey)}`}>
+                      {t(exp.typeKey)}
                     </span>
                     <span className="text-gray-500 text-sm">{exp.period}</span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-1">{exp.title}</h3>
+                  <h3 className="text-xl font-bold text-white mb-1">{t(exp.titleKey)}</h3>
                   <p className="text-cyber-cyan font-medium mb-3">{exp.company}</p>
-                  <p className="text-gray-400 text-sm mb-4">{exp.description}</p>
+                  <p className="text-gray-400 text-sm mb-4">{t(exp.descKey)}</p>
 
                   <div className="flex flex-wrap gap-2">
                     {exp.skills.map((skill) => (

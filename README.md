@@ -5,10 +5,11 @@ A stunning, modern portfolio website built with React, Three.js, and Framer Moti
 ## Features
 
 - 🎨 **3D Particle Field** - Interactive Three.js background
-- ✨ **Custom Cursor** - Smooth, animated cursor
+- ✨ **Custom Cursor** - Smooth, animated cursor with glow effect
 - 🌊 **Smooth Animations** - Framer Motion powered transitions
 - 📱 **Fully Responsive** - Works on all devices
 - 🎭 **Dark Cyber Theme** - Modern, professional design
+- 🌍 **Multilingual** - Dutch and English support
 - 🐳 **Docker Ready** - Deploy anywhere with Docker Compose
 
 ## Tech Stack
@@ -58,11 +59,12 @@ src/
 │   ├── About.tsx          # About me with stats
 │   ├── Experience.tsx     # Timeline of experience
 │   ├── Skills.tsx         # Skills visualization
-│   ├── Achievements.tsx   # Key achievements
-│   ├── Contact.tsx        # Contact form
-│   ├── Navigation.tsx     # Animated navigation
+│   ├── Connect.tsx        # Social links & availability
+│   ├── Navigation.tsx     # Animated navigation with language switch
 │   ├── ParticleField.tsx  # Three.js particles
 │   └── CustomCursor.tsx   # Custom animated cursor
+├── i18n/
+│   └── LanguageContext.tsx # Multilingual support (NL/EN)
 ├── App.tsx
 ├── main.tsx
 └── index.css
@@ -73,8 +75,8 @@ src/
 Edit the data in each component to personalize:
 - `Experience.tsx` - Your work history
 - `Skills.tsx` - Your skills and levels
-- `Achievements.tsx` - Your accomplishments
-- `Contact.tsx` - Your contact info & social links
+- `Connect.tsx` - Your social links
+- `i18n/LanguageContext.tsx` - All translations (NL/EN)
 
 ---
 

@@ -1,47 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-
-interface SkillCategory {
-  name: string
-  color: string
-  skills: { name: string; level: number }[]
-}
-
-const skillCategories: SkillCategory[] = [
-  {
-    name: 'Technical',
-    color: '#8b5cf6',
-    skills: [
-      { name: 'Artificial Intelligence', level: 90 },
-      { name: 'Data Analytics', level: 95 },
-      { name: 'Excel VBA', level: 95 },
-      { name: 'Power Query', level: 90 },
-      { name: 'Dashboard Design', level: 85 },
-    ],
-  },
-  {
-    name: 'Business',
-    color: '#06b6d4',
-    skills: [
-      { name: 'Project Management', level: 88 },
-      { name: 'Process Improvement', level: 85 },
-      { name: 'Strategic Planning', level: 82 },
-      { name: 'Business Analysis', level: 88 },
-      { name: 'Stakeholder Management', level: 85 },
-    ],
-  },
-  {
-    name: 'Leadership',
-    color: '#ec4899',
-    skills: [
-      { name: 'Policy Writing', level: 90 },
-      { name: 'Team Leadership', level: 85 },
-      { name: 'Public Speaking', level: 80 },
-      { name: 'Strategic Communication', level: 88 },
-      { name: 'Social Media Management', level: 85 },
-    ],
-  },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 function SkillBar({ skill, color, delay }: { skill: { name: string; level: number }; color: string; delay: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -91,6 +50,43 @@ function FloatingIcon({ children, delay }: { children: React.ReactNode; delay: n
 export default function Skills() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { t } = useLanguage()
+
+  const skillCategories = [
+    {
+      nameKey: 'skills.technical',
+      color: '#8b5cf6',
+      skills: [
+        { name: 'Artificial Intelligence', level: 90 },
+        { name: 'Data Analytics', level: 95 },
+        { name: 'Excel VBA', level: 95 },
+        { name: 'Power Query', level: 90 },
+        { name: 'Dashboard Design', level: 85 },
+      ],
+    },
+    {
+      nameKey: 'skills.business',
+      color: '#06b6d4',
+      skills: [
+        { name: 'Project Management', level: 88 },
+        { name: 'Process Improvement', level: 85 },
+        { name: 'Strategic Planning', level: 82 },
+        { name: 'Business Analysis', level: 88 },
+        { name: 'Stakeholder Management', level: 85 },
+      ],
+    },
+    {
+      nameKey: 'skills.leadership',
+      color: '#ec4899',
+      skills: [
+        { name: 'Policy Writing', level: 90 },
+        { name: 'Team Leadership', level: 85 },
+        { name: 'Public Speaking', level: 80 },
+        { name: 'Strategic Communication', level: 88 },
+        { name: 'Social Media Management', level: 85 },
+      ],
+    },
+  ]
 
   const icons = ['🤖', '📊', '💡', '🎯', '⚡', '🔮']
 
@@ -111,16 +107,16 @@ export default function Skills() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-20"
         >
-          <span className="text-cyber-cyan font-mono text-sm">// Expertise</span>
+          <span className="text-cyber-cyan font-mono text-sm">{t('skills.subtitle')}</span>
           <h2 className="text-4xl md:text-6xl font-bold mt-4">
-            Skills & <span className="gradient-text">Capabilities</span>
+            {t('skills.title1')} <span className="gradient-text">{t('skills.title2')}</span>
           </h2>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {skillCategories.map((category, catIndex) => (
             <motion.div
-              key={category.name}
+              key={category.nameKey}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: catIndex * 0.2 }}
@@ -143,7 +139,7 @@ export default function Skills() {
                     className="w-2 h-2 rounded-full animate-pulse"
                     style={{ backgroundColor: category.color }}
                   />
-                  {category.name}
+                  {t(category.nameKey)}
                 </div>
 
                 {category.skills.map((skill, skillIndex) => (
@@ -166,7 +162,7 @@ export default function Skills() {
           transition={{ delay: 0.8 }}
           className="mt-16 text-center"
         >
-          <p className="text-gray-500 mb-6">Tools & Technologies I work with</p>
+          <p className="text-gray-500 mb-6">{t('skills.tools')}</p>
           <div className="flex flex-wrap justify-center gap-4">
             {['Microsoft Excel', 'Power BI', 'Python', 'SQL', 'ChatGPT', 'Claude', 'Notion', 'Figma'].map(
               (tool, i) => (

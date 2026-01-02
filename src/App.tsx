@@ -4,15 +4,16 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
-import Achievements from './components/Achievements'
-import Contact from './components/Contact'
+import Connect from './components/Connect'
 import Navigation from './components/Navigation'
 import CustomCursor from './components/CustomCursor'
 import ParticleField from './components/ParticleField'
+import { useLanguage } from './i18n/LanguageContext'
 
 function App() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll()
+  const { t } = useLanguage()
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -42,12 +43,11 @@ function App() {
         <About />
         <Experience />
         <Skills />
-        <Achievements />
-        <Contact />
+        <Connect />
       </main>
 
       <footer className="py-8 text-center text-gray-500 text-sm border-t border-white/5">
-        <p>&copy; {new Date().getFullYear()} Bart Luttels. Crafted with passion.</p>
+        <p>&copy; {new Date().getFullYear()} Bart Luttels. {t('footer.text')}</p>
       </footer>
     </div>
   )

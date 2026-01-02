@@ -1,8 +1,10 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null)
+  const { t } = useLanguage()
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start']
@@ -40,7 +42,7 @@ export default function Hero() {
           className="mb-6"
         >
           <span className="px-4 py-2 rounded-full glass text-sm text-cyber-cyan font-mono">
-            AI Implementation Specialist
+            {t('hero.title')}
           </span>
         </motion.div>
 
@@ -67,7 +69,7 @@ export default function Hero() {
           transition={{ delay: 1.2 }}
           className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12 font-light"
         >
-          Helping businesses embrace the future through{' '}
+          {t('hero.subtitle')}{' '}
           <span className="text-cyber-purple">AI</span>,{' '}
           <span className="text-cyber-cyan">Data Analytics</span> &{' '}
           <span className="text-cyber-pink">Innovation</span>
@@ -81,20 +83,20 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <motion.a
-            href="#contact"
+            href="#experience"
             className="px-8 py-4 rounded-full bg-gradient-to-r from-cyber-purple to-cyber-cyan text-white font-medium text-lg glow-purple"
             whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(139, 92, 246, 0.5)' }}
             whileTap={{ scale: 0.95 }}
           >
-            Start a Project
+            {t('hero.cta1')}
           </motion.a>
           <motion.a
-            href="#experience"
+            href="#connect"
             className="px-8 py-4 rounded-full glass text-white font-medium text-lg border border-white/10"
             whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
             whileTap={{ scale: 0.95 }}
           >
-            View Experience
+            {t('hero.cta2')}
           </motion.a>
         </motion.div>
 

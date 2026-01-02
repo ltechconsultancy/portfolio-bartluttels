@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const navItems = [
-  { name: 'About', href: '#about' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Achievements', href: '#achievements' },
-  { name: 'Contact', href: '#contact' },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { language, setLanguage, t } = useLanguage()
+
+  const navItems = [
+    { name: t('nav.about'), href: '#about' },
+    { name: t('nav.experience'), href: '#experience' },
+    { name: t('nav.skills'), href: '#skills' },
+    { name: t('nav.connect'), href: '#connect' },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +44,7 @@ export default function Navigation() {
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item, i) => (
               <motion.a
-                key={item.name}
+                key={item.href}
                 href={item.href}
                 className="text-gray-300 hover:text-white transition-colors line-glow"
                 initial={{ opacity: 0, y: -20 }}
@@ -53,14 +54,35 @@ export default function Navigation() {
                 {item.name}
               </motion.a>
             ))}
-            <motion.a
-              href="#contact"
-              className="px-6 py-2 rounded-full bg-gradient-to-r from-cyber-purple to-cyber-cyan text-white font-medium hover:shadow-lg hover:shadow-cyber-purple/25 transition-shadow"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Let's Talk
-            </motion.a>
+
+            {/* Language Switcher */}
+            <div className="flex items-center gap-1 ml-4">
+              <motion.button
+                onClick={() => setLanguage('nl')}
+                className={`px-2 py-1 rounded text-sm font-medium transition-colors ${
+                  language === 'nl'
+                    ? 'bg-cyber-purple/30 text-cyber-purple'
+                    : 'text-gray-500 hover:text-gray-300'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                NL
+              </motion.button>
+              <span className="text-gray-600">|</span>
+              <motion.button
+                onClick={() => setLanguage('en')}
+                className={`px-2 py-1 rounded text-sm font-medium transition-colors ${
+                  language === 'en'
+                    ? 'bg-cyber-purple/30 text-cyber-purple'
+                    : 'text-gray-500 hover:text-gray-300'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                EN
+              </motion.button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,7 +117,7 @@ export default function Navigation() {
           >
             {navItems.map((item, i) => (
               <motion.a
-                key={item.name}
+                key={item.href}
                 href={item.href}
                 className="text-3xl font-light text-white"
                 initial={{ opacity: 0, x: 50 }}
@@ -106,6 +128,32 @@ export default function Navigation() {
                 {item.name}
               </motion.a>
             ))}
+
+            {/* Mobile Language Switcher */}
+            <div className="flex items-center gap-4 mt-8">
+              <motion.button
+                onClick={() => setLanguage('nl')}
+                className={`px-4 py-2 rounded-lg text-lg font-medium transition-colors ${
+                  language === 'nl'
+                    ? 'bg-cyber-purple/30 text-cyber-purple'
+                    : 'text-gray-500'
+                }`}
+                whileTap={{ scale: 0.95 }}
+              >
+                Nederlands
+              </motion.button>
+              <motion.button
+                onClick={() => setLanguage('en')}
+                className={`px-4 py-2 rounded-lg text-lg font-medium transition-colors ${
+                  language === 'en'
+                    ? 'bg-cyber-purple/30 text-cyber-purple'
+                    : 'text-gray-500'
+                }`}
+                whileTap={{ scale: 0.95 }}
+              >
+                English
+              </motion.button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

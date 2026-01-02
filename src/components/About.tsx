@@ -1,15 +1,17 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function About() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { t } = useLanguage()
 
   const stats = [
-    { value: '5+', label: 'Years Experience' },
-    { value: '20+', label: 'Projects Delivered' },
-    { value: '3', label: 'Active Roles' },
-    { value: '1', label: 'Award-Winning Program' },
+    { value: '5+', label: t('about.stat1') },
+    { value: '20+', label: t('about.stat2') },
+    { value: '3', label: t('about.stat3') },
+    { value: '1', label: t('about.stat4') },
   ]
 
   return (
@@ -66,7 +68,7 @@ export default function About() {
               transition={{ delay: 0.3 }}
               className="text-cyber-cyan font-mono text-sm"
             >
-              // About me
+              {t('about.subtitle')}
             </motion.span>
 
             <motion.h2
@@ -75,7 +77,7 @@ export default function About() {
               transition={{ delay: 0.4 }}
               className="text-4xl md:text-5xl font-bold mt-4 mb-6"
             >
-              Bridging <span className="gradient-text">Technology</span> & <span className="gradient-text">Policy</span>
+              {t('about.title1')} <span className="gradient-text">{t('about.title2')}</span> {t('about.title3')} <span className="gradient-text">{t('about.title4')}</span>
             </motion.h2>
 
             <motion.div
@@ -85,19 +87,28 @@ export default function About() {
               className="space-y-4 text-gray-400 text-lg leading-relaxed"
             >
               <p>
-                I'm an AI Implementation Specialist and Technical Business graduate with a unique
-                combination of technical expertise and political insight. Currently working at
-                <span className="text-cyber-purple"> ZeroPlex</span>, I help SMBs navigate the
-                AI revolution.
+                {t('about.p1').split('ZeroPlex').map((part, i, arr) => (
+                  <span key={i}>
+                    {part}
+                    {i < arr.length - 1 && <span className="text-cyber-purple">ZeroPlex</span>}
+                  </span>
+                ))}
               </p>
               <p>
-                As owner of <span className="text-cyber-cyan">LTech Consultancy</span> and a
-                provincial committee member in Limburg, I bring data-driven insights to both
-                business strategy and public policy—focusing on digitalization, energy, and finance.
+                {t('about.p2').split('LTech Consultancy').map((part, i, arr) => (
+                  <span key={i}>
+                    {part}
+                    {i < arr.length - 1 && <span className="text-cyber-cyan">LTech Consultancy</span>}
+                  </span>
+                ))}
               </p>
               <p>
-                My election program work was recognized by NL-Digital as the
-                <span className="text-cyber-pink"> best digitalization program</span> in Dutch politics.
+                {t('about.p3').split('NL-Digital').map((part, i, arr) => (
+                  <span key={i}>
+                    {part}
+                    {i < arr.length - 1 && <span className="text-cyber-pink">NL-Digital</span>}
+                  </span>
+                ))}
               </p>
             </motion.div>
 
