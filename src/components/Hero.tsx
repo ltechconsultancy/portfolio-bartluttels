@@ -10,117 +10,62 @@ export default function Hero() {
     offset: ['start start', 'end start']
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
-  const letterVariants = {
-    hidden: { y: 100, opacity: 0 },
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: i * 0.05,
-        duration: 0.8,
-        ease: [0.6, 0.01, -0.05, 0.95]
-      }
-    })
-  }
-
-  const name = "Bart Luttels"
-
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <motion.div style={{ y, opacity }} className="relative z-10 text-center px-6">
-        {/* Glowing orb background */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-cyber-purple/20 to-cyber-cyan/20 blur-3xl" />
-
-        {/* Pre-title */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="mb-6"
-        >
-          <span className="px-4 py-2 rounded-full glass text-sm text-cyber-cyan font-mono">
-            {t('hero.title')}
-          </span>
-        </motion.div>
-
-        {/* Main title */}
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 overflow-hidden">
-          {name.split('').map((letter, i) => (
-            <motion.span
-              key={i}
-              custom={i}
-              variants={letterVariants}
-              initial="hidden"
-              animate="visible"
-              className={letter === ' ' ? 'inline-block w-4 md:w-8' : 'inline-block gradient-text'}
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </h1>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-          className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12 font-light"
-        >
-          {t('hero.subtitle')}{' '}
-          <span className="text-cyber-purple">AI</span>,{' '}
-          <span className="text-cyber-cyan">Data Analytics</span> &{' '}
-          <span className="text-cyber-pink">Innovation</span>
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <motion.a
-            href="#experience"
-            className="px-8 py-4 rounded-full bg-gradient-to-r from-cyber-purple to-cyber-cyan text-white font-medium text-lg glow-purple"
-            whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(139, 92, 246, 0.5)' }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {t('hero.cta1')}
-          </motion.a>
-          <motion.a
-            href="#connect"
-            className="px-8 py-4 rounded-full glass text-white font-medium text-lg border border-white/10"
-            whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {t('hero.cta2')}
-          </motion.a>
-        </motion.div>
-
-        {/* Scroll indicator */}
+    <section ref={ref} className="relative h-screen flex items-center justify-center">
+      <motion.div style={{ y, opacity }} className="relative z-10 text-center px-6 max-w-5xl">
+        {/* Minimal badge */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
+          transition={{ duration: 1, delay: 0.2 }}
+          className="mb-8"
+        >
+          <span className="text-xs tracking-[0.3em] text-gray-500 uppercase">
+            {t('hero.badge')}
+          </span>
+        </motion.div>
+
+        {/* Name - big and bold */}
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-[clamp(3rem,12vw,10rem)] font-bold leading-[0.9] tracking-tight mb-8"
+        >
+          <span className="block text-white">Bart</span>
+          <span className="block gradient-text">Luttels</span>
+        </motion.h1>
+
+        {/* Simple tagline */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-lg md:text-xl text-gray-400 font-light max-w-lg mx-auto"
+        >
+          {t('hero.tagline')}
+        </motion.p>
+
+        {/* Minimal scroll hint */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.3 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-20 left-1/2 -translate-x-1/2"
         >
           <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2"
-          >
-            <motion.div className="w-1.5 h-1.5 rounded-full bg-white" />
-          </motion.div>
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+            className="w-px h-16 bg-gradient-to-b from-transparent via-gray-500 to-transparent"
+          />
         </motion.div>
       </motion.div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-20 w-2 h-2 rounded-full bg-cyber-purple animate-pulse" />
-      <div className="absolute top-40 right-32 w-3 h-3 rounded-full bg-cyber-cyan animate-pulse" style={{ animationDelay: '0.5s' }} />
-      <div className="absolute bottom-32 left-1/4 w-2 h-2 rounded-full bg-cyber-pink animate-pulse" style={{ animationDelay: '1s' }} />
+      {/* Subtle gradient orb */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-radial from-cyber-purple/10 via-transparent to-transparent blur-3xl pointer-events-none" />
     </section>
   )
 }

@@ -11,87 +11,76 @@ interface Translations {
 
 const translations: Translations = {
   // Navigation
-  'nav.about': { nl: 'Over mij', en: 'About' },
+  'nav.about': { nl: 'Over', en: 'About' },
   'nav.experience': { nl: 'Ervaring', en: 'Experience' },
-  'nav.skills': { nl: 'Vaardigheden', en: 'Skills' },
+  'nav.skills': { nl: 'Skills', en: 'Skills' },
   'nav.connect': { nl: 'Contact', en: 'Connect' },
 
   // Hero
-  'hero.title': { nl: 'AI Implementation Specialist', en: 'AI Implementation Specialist' },
-  'hero.subtitle': { nl: 'Bedrijven helpen de toekomst te omarmen door', en: 'Helping businesses embrace the future through' },
-  'hero.cta1': { nl: 'Bekijk Ervaring', en: 'View Experience' },
-  'hero.cta2': { nl: 'Neem Contact Op', en: 'Get in Touch' },
+  'hero.badge': { nl: 'AI Implementation Specialist', en: 'AI Implementation Specialist' },
+  'hero.tagline': {
+    nl: 'AI implementatie, data analytics & strategisch advies voor bedrijven en overheid.',
+    en: 'AI implementation, data analytics & strategic consulting for business and government.'
+  },
 
   // About
-  'about.subtitle': { nl: '// Over mij', en: '// About me' },
-  'about.title1': { nl: 'De brug tussen', en: 'Bridging' },
-  'about.title2': { nl: 'Technologie', en: 'Technology' },
-  'about.title3': { nl: '&', en: '&' },
-  'about.title4': { nl: 'Beleid', en: 'Policy' },
-  'about.p1': {
-    nl: 'Ik ben een AI Implementation Specialist en afgestudeerd in Technische Bedrijfskunde met een unieke combinatie van technische expertise en politiek inzicht. Momenteel werkzaam bij ZeroPlex, help ik het MKB om de AI-revolutie te omarmen.',
-    en: "I'm an AI Implementation Specialist and Technical Business graduate with a unique combination of technical expertise and political insight. Currently working at ZeroPlex, I help SMBs navigate the AI revolution."
+  'about.label': { nl: 'Over mij', en: 'About' },
+  'about.main1': { nl: 'Ik help organisaties', en: 'I help organizations' },
+  'about.highlight1': { nl: 'AI te omarmen', en: 'embrace AI' },
+  'about.main2': { nl: 'en', en: 'and' },
+  'about.highlight2': { nl: 'data-gedreven', en: 'data-driven' },
+  'about.main3': { nl: ' beslissingen te nemen.', en: ' decisions.' },
+  'about.secondary': {
+    nl: 'Met een achtergrond in Technische Bedrijfskunde combineer ik technische expertise met strategisch inzicht. Actief in zowel het bedrijfsleven als de politiek.',
+    en: 'With a background in Technical Business Administration, I combine technical expertise with strategic insight. Active in both business and politics.'
   },
-  'about.p2': {
-    nl: 'Als eigenaar van LTech Consultancy en burgercommissielid in Limburg, breng ik data-gedreven inzichten naar zowel bedrijfsstrategie als openbaar beleid—met focus op digitalisering, energie en financiën.',
-    en: 'As owner of LTech Consultancy and a provincial committee member in Limburg, I bring data-driven insights to both business strategy and public policy—focusing on digitalization, energy, and finance.'
-  },
-  'about.p3': {
-    nl: 'Mijn werk aan het verkiezingsprogramma werd door NL-Digital erkend als het beste digitaliseringsprogramma in de Nederlandse politiek.',
-    en: 'My election program work was recognized by NL-Digital as the best digitalization program in Dutch politics.'
-  },
-  'about.stat1': { nl: 'Jaar Ervaring', en: 'Years Experience' },
-  'about.stat2': { nl: 'Projecten Afgerond', en: 'Projects Delivered' },
-  'about.stat3': { nl: 'Actieve Rollen', en: 'Active Roles' },
-  'about.stat4': { nl: 'Erkend Programma', en: 'Recognized Program' },
+  'about.stat1': { nl: 'Jaar ervaring', en: 'Years experience' },
+  'about.stat2': { nl: 'Projecten', en: 'Projects' },
+  'about.stat3': { nl: 'Actieve rollen', en: 'Active roles' },
 
   // Experience
-  'experience.subtitle': { nl: '// Carrière', en: '// Career' },
-  'experience.title1': { nl: 'Ervaring', en: 'Experience' },
-  'experience.title2': { nl: 'Tijdlijn', en: 'Timeline' },
-  'experience.political': { nl: 'Politiek', en: 'Political' },
-  'experience.selfEmployed': { nl: 'Zelfstandig', en: 'Self-employed' },
-  'experience.partTime': { nl: 'Parttime', en: 'Part-time' },
-  'experience.freelance': { nl: 'Freelance', en: 'Freelance' },
-
-  // Experience items
+  'experience.label': { nl: 'Ervaring', en: 'Experience' },
   'exp.zeroplex.title': { nl: 'AI Implementation Specialist', en: 'AI Implementation Specialist' },
-  'exp.zeroplex.desc': { nl: 'Regionale bedrijven helpen vooruit te komen met AI-implementatie en strategie.', en: 'Helping regional businesses advance with AI implementation and strategy.' },
+  'exp.zeroplex.desc': {
+    nl: 'Regionale bedrijven helpen met AI-implementatie en digitale strategie.',
+    en: 'Helping regional businesses with AI implementation and digital strategy.'
+  },
   'exp.ltech.title': { nl: 'Eigenaar', en: 'Owner' },
-  'exp.ltech.desc': { nl: 'AI-consulting, data-analyse en optimalisatie van bedrijfsprocessen.', en: 'Providing AI consulting, data analytics, and business process optimization.' },
+  'exp.ltech.desc': {
+    nl: 'AI consulting, data analytics en proces optimalisatie.',
+    en: 'AI consulting, data analytics and process optimization.'
+  },
   'exp.provincie.title': { nl: 'Burgercommissielid', en: 'Provincial Committee Member' },
-  'exp.provincie.desc': { nl: 'Focusgebieden: Nieuwe Energie, Digitalisering (AI, Data) en Financiën.', en: 'Focus areas: New Energy, Digitalization (AI, Data), and Finance.' },
-  'exp.bbb.title': { nl: 'Hoofd Programmacommissie', en: 'Head of Program Committee' },
-  'exp.bbb.desc': { nl: 'Leiding gegeven aan het schrijven van het volledige verkiezingsprogramma voor de Tweede Kamerverkiezingen, met focus op digitalisering.', en: 'Led the creation of the entire election program for national elections, with focus on digitalization.' },
+  'exp.provincie.desc': {
+    nl: 'Focus: Energie, Digitalisering en Financiën.',
+    en: 'Focus: Energy, Digitalization and Finance.'
+  },
+  'exp.program.title': { nl: 'Hoofd Programmacommissie', en: 'Head of Program Committee' },
+  'exp.program.desc': {
+    nl: 'Leiding gegeven aan het schrijven van het verkiezingsprogramma met focus op digitalisering.',
+    en: 'Led the creation of the election program with focus on digitalization.'
+  },
+  'exp.political': { nl: 'Politieke Partij', en: 'Political Party' },
   'exp.vdl.title': { nl: 'Data Analist', en: 'Data Analyst' },
-  'exp.vdl.desc': { nl: 'Actionable inzichten gecreëerd door data cleaning en geavanceerde dashboards.', en: 'Created actionable insights through data cleaning and advanced dashboards.' },
-  'exp.bbb2.title': { nl: 'Mede-auteur Verkiezingsprogramma', en: 'Co-Writer Election Program' },
-  'exp.bbb2.desc': { nl: 'Een van 12 schrijvers. Verantwoordelijk voor technologie, wetenschap en onderwijs. Programma erkend als beste op digitalisering door NL-Digital.', en: 'One of 12 writers. Responsible for technology, science, and education. Program recognized as best on digitalization by NL-Digital.' },
-
-  // Skills
-  'skills.subtitle': { nl: '// Expertise', en: '// Expertise' },
-  'skills.title1': { nl: 'Vaardigheden &', en: 'Skills &' },
-  'skills.title2': { nl: 'Capaciteiten', en: 'Capabilities' },
-  'skills.technical': { nl: 'Technisch', en: 'Technical' },
-  'skills.business': { nl: 'Zakelijk', en: 'Business' },
-  'skills.leadership': { nl: 'Leiderschap', en: 'Leadership' },
-  'skills.tools': { nl: 'Tools & Technologieën waar ik mee werk', en: 'Tools & Technologies I work with' },
-
-  // Connect
-  'connect.subtitle': { nl: 'Verbinden', en: 'Get in touch' },
-  'connect.title1': { nl: 'Laten we', en: "Let's" },
-  'connect.title2': { nl: 'Connecten', en: 'Connect' },
-  'connect.findMe': { nl: 'Vind me op', en: 'Find me on' },
-  'connect.basedIn': { nl: 'Gevestigd in', en: 'Based in' },
-  'connect.remote': { nl: 'Beschikbaar voor remote werk wereldwijd', en: 'Available for remote work worldwide' },
-  'connect.available': { nl: 'Beschikbaar voor Projecten', en: 'Available for Projects' },
-  'connect.availableDesc': {
-    nl: 'Open voor AI-implementatie consulting, data-analyse projecten en strategische adviesrollen.',
-    en: 'Currently open for AI implementation consulting, data analytics projects, and strategic advisory roles.'
+  'exp.vdl.desc': {
+    nl: 'Data cleaning, dashboards en actionable insights.',
+    en: 'Data cleaning, dashboards and actionable insights.'
   },
 
-  // Footer
-  'footer.text': { nl: 'Met passie gemaakt.', en: 'Crafted with passion.' },
+  // Skills
+  'skills.label': { nl: 'Expertise', en: 'Expertise' },
+  'skills.ai': { nl: 'AI & Automatisering', en: 'AI & Automation' },
+  'skills.data': { nl: 'Data & Analytics', en: 'Data & Analytics' },
+  'skills.strategy': { nl: 'Strategie & Beleid', en: 'Strategy & Policy' },
+  'skills.tools': { nl: 'Tools', en: 'Tools' },
+
+  // Connect
+  'connect.label': { nl: 'Contact', en: 'Connect' },
+  'connect.heading': {
+    nl: "Laten we samenwerken.",
+    en: "Let's work together."
+  },
+  'connect.available': { nl: 'Beschikbaar voor projecten', en: 'Available for projects' },
 }
 
 interface LanguageContextType {

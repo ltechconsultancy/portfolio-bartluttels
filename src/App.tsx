@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -7,13 +7,9 @@ import Skills from './components/Skills'
 import Connect from './components/Connect'
 import Navigation from './components/Navigation'
 import CustomCursor from './components/CustomCursor'
-import ParticleField from './components/ParticleField'
-import { useLanguage } from './i18n/LanguageContext'
 
 function App() {
-  const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll()
-  const { t } = useLanguage()
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -25,18 +21,17 @@ function App() {
   }, [])
 
   return (
-    <div ref={containerRef} className="relative">
+    <div className="relative">
       <CustomCursor />
       <div className="noise" />
 
-      {/* Progress Bar */}
+      {/* Minimal progress indicator */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyber-purple via-cyber-cyan to-cyber-pink z-50 origin-left"
+        className="fixed top-0 left-0 right-0 h-px bg-white/20 z-50 origin-left"
         style={{ scaleX }}
       />
 
       <Navigation />
-      <ParticleField />
 
       <main>
         <Hero />
@@ -46,8 +41,8 @@ function App() {
         <Connect />
       </main>
 
-      <footer className="py-8 text-center text-gray-500 text-sm border-t border-white/5">
-        <p>&copy; {new Date().getFullYear()} Bart Luttels. {t('footer.text')}</p>
+      <footer className="py-12 text-center text-gray-600 text-xs tracking-wider">
+        <p>&copy; {new Date().getFullYear()} Bart Luttels</p>
       </footer>
     </div>
   )

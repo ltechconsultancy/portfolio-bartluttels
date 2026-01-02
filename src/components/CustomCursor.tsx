@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react'
 import { motion, useSpring } from 'framer-motion'
 
 export default function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
 
-  const springConfig = { damping: 25, stiffness: 700 }
-  const cursorX = useSpring(mousePosition.x, springConfig)
-  const cursorY = useSpring(mousePosition.y, springConfig)
+  const cursorX = useSpring(0, { stiffness: 500, damping: 28 })
+  const cursorY = useSpring(0, { stiffness: 500, damping: 28 })
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
+    const handleMouseMove = (e: MouseEvent) => {
+      cursorX.set(e.clientX)
+      cursorY.set(e.clientY)
+      if (!isVisible) setIsVisible(true)
     }
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -25,46 +26,36 @@ export default function CustomCursor() {
       setIsHovering(false)
     }
 
-    window.addEventListener('mousemove', updateMousePosition)
+    window.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseover', handleMouseOver)
     document.addEventListener('mouseout', handleMouseOut)
 
     return () => {
-      window.removeEventListener('mousemove', updateMousePosition)
+      window.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseover', handleMouseOver)
       document.removeEventListener('mouseout', handleMouseOut)
     }
-  }, [])
+  }, [cursorX, cursorY, isVisible])
+
+  // Don't render on touch devices
+  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
+    return null
+  }
 
   return (
     <>
-      {/* Main cursor */}
+      {/* Simple dot cursor */}
       <motion.div
-        className="fixed w-3 h-3 rounded-full pointer-events-none z-[9999]"
+        className="fixed w-2 h-2 rounded-full pointer-events-none z-[9999] bg-white mix-blend-difference"
         style={{
           x: cursorX,
           y: cursorY,
           translateX: '-50%',
           translateY: '-50%',
-          background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
-          scale: isHovering ? 2 : 1,
+          opacity: isVisible ? 1 : 0,
+          scale: isHovering ? 3 : 1,
         }}
         transition={{ type: 'spring', stiffness: 500, damping: 28 }}
-      />
-
-      {/* Trailing cursor */}
-      <motion.div
-        className="fixed w-8 h-8 rounded-full pointer-events-none z-[9998]"
-        style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: '-50%',
-          translateY: '-50%',
-          scale: isHovering ? 1.5 : 1,
-          border: '1px solid rgba(139, 92, 246, 0.5)',
-          boxShadow: '0 0 15px rgba(139, 92, 246, 0.3)',
-        }}
-        transition={{ type: 'spring', stiffness: 150, damping: 15 }}
       />
     </>
   )
