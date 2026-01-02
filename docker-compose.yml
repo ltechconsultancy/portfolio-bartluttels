@@ -6,3 +6,9 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - "traefik.http.routers.portfolio.rule=Host(`portfolio.bartluttels.nl`)"
+      - traefik.http.routers.portfolio.entryPoints=https
+      - traefik.http.routers.portfolio.tls=true
+      - traefik.http.services.portfolio.loadbalancer.server.port=80
