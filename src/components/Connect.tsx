@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '../i18n/LanguageContext'
+import LinkedInButton from './LinkedInButton'
 
 export default function Connect() {
   const ref = useRef<HTMLDivElement>(null)
@@ -64,11 +65,21 @@ export default function Connect() {
           ))}
         </motion.div>
 
+        {/* LinkedIn Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8 }}
+          className="mt-16 flex justify-center md:justify-start"
+        >
+          <LinkedInButton />
+        </motion.div>
+
         {/* Location & Status */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 1.0 }}
           className="mt-20 flex flex-col md:flex-row md:items-center gap-8"
         >
           <div className="flex items-center gap-3">
