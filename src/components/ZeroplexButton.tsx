@@ -13,7 +13,7 @@ export default function ZeroplexButton() {
         </div>
       </div>
       <a
-        href="https://zeroplex.nl"
+        href="https://zeroplex.ai"
         target="_blank"
         rel="noopener noreferrer"
         className="icon"
