@@ -2,17 +2,14 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '../i18n/LanguageContext'
 import LinkedInButton from './LinkedInButton'
+import EmailButton from './EmailButton'
+import LTechButton from './LTechButton'
+import ZeroplexButton from './ZeroplexButton'
 
 export default function Connect() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   const { t } = useLanguage()
-
-  const links = [
-    { name: 'LinkedIn', url: 'https://linkedin.com/in/bart-luttels' },
-    { name: 'Email', url: 'mailto:info@bartluttels.nl' },
-    { name: 'LTech Consultancy', url: 'https://ltechconsultancy.nl' },
-  ]
 
   return (
     <section id="connect" className="relative py-40 z-10">
@@ -37,42 +34,41 @@ export default function Connect() {
           {t('connect.heading')}
         </motion.h2>
 
-        {/* Links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4 }}
-          className="space-y-0 border-t border-white/5"
-        >
-          {links.map((link, i) => (
-            <motion.a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.5 + i * 0.1 }}
-              className="group flex items-center justify-between py-6 border-b border-white/5 hover:border-cyber-purple/30 transition-colors"
-            >
-              <span className="text-xl md:text-2xl text-gray-400 group-hover:text-white transition-colors">
-                {link.name}
-              </span>
-              <span className="text-gray-600 group-hover:text-cyber-purple transition-colors group-hover:translate-x-2 transform duration-300">
-                →
-              </span>
-            </motion.a>
-          ))}
-        </motion.div>
-
-        {/* LinkedIn Button */}
+        {/* Social Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
-          className="mt-16 flex justify-center md:justify-start"
+          transition={{ delay: 0.4 }}
+          className="flex flex-wrap gap-8 justify-center md:justify-start"
         >
-          <LinkedInButton />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.5 }}
+          >
+            <LinkedInButton />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.6 }}
+          >
+            <EmailButton />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.7 }}
+          >
+            <LTechButton />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.8 }}
+          >
+            <ZeroplexButton />
+          </motion.div>
         </motion.div>
 
         {/* Location & Status */}

@@ -57,8 +57,8 @@ body {
   background: radial-gradient(circle, var(--tw-gradient-from), var(--tw-gradient-to));
 }
 
-/* LinkedIn Button with Tooltip */
-.linkedin-tooltip-container {
+/* Social Button Base Styles */
+.social-btn {
   position: relative;
   cursor: pointer;
   transition: all 0.2s;
@@ -66,7 +66,7 @@ body {
   border-radius: 10px;
 }
 
-.linkedin-tooltip {
+.social-btn .tooltip {
   position: absolute;
   top: 0;
   left: 50%;
@@ -81,145 +81,153 @@ body {
     5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
 }
 
-.linkedin-profile {
+.social-btn .profile {
   background: #1a1a1f;
   border-radius: 10px 15px;
   padding: 10px;
-  border: 1px solid rgba(0, 119, 181, 0.5);
 }
 
-.linkedin-tooltip-container:hover .linkedin-tooltip {
-  top: -150px;
+.social-btn:hover .tooltip {
+  top: -120px;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
-.linkedin-icon {
+.social-btn .icon {
   text-decoration: none;
   color: #fff;
   display: block;
   position: relative;
 }
 
-.linkedin-layer {
+.social-btn .layer {
   width: 55px;
   height: 55px;
   transition: transform 0.3s;
 }
 
-.linkedin-icon:hover .linkedin-layer {
+.social-btn .icon:hover .layer {
   transform: rotate(-35deg) skew(20deg);
 }
 
-.linkedin-layer span {
+.social-btn .layer span {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  border: 1px solid #0077B5;
   border-radius: 5px;
   transition: all 0.3s;
 }
 
-.linkedin-icon .linkedin-text {
+.social-btn .icon .text {
   position: absolute;
   left: 50%;
   bottom: -5px;
   opacity: 0;
   font-weight: 500;
-  color: #0077B5;
   transform: translateX(-50%);
   transition: bottom 0.3s ease, opacity 0.3s ease;
+  white-space: nowrap;
 }
 
-.linkedin-icon:hover .linkedin-text {
+.social-btn .icon:hover .text {
   bottom: -35px;
   opacity: 1;
 }
 
-.linkedin-icon:hover .linkedin-layer span:nth-child(1) {
-  opacity: 0.2;
-}
+.social-btn .icon:hover .layer span:nth-child(1) { opacity: 0.2; }
+.social-btn .icon:hover .layer span:nth-child(2) { opacity: 0.4; transform: translate(5px, -5px); }
+.social-btn .icon:hover .layer span:nth-child(3) { opacity: 0.6; transform: translate(10px, -10px); }
+.social-btn .icon:hover .layer span:nth-child(4) { opacity: 0.8; transform: translate(15px, -15px); }
+.social-btn .icon:hover .layer span:nth-child(5) { opacity: 1; transform: translate(20px, -20px); }
 
-.linkedin-icon:hover .linkedin-layer span:nth-child(2) {
-  opacity: 0.4;
-  transform: translate(5px, -5px);
-}
-
-.linkedin-icon:hover .linkedin-layer span:nth-child(3) {
-  opacity: 0.6;
-  transform: translate(10px, -10px);
-}
-
-.linkedin-icon:hover .linkedin-layer span:nth-child(4) {
-  opacity: 0.8;
-  transform: translate(15px, -15px);
-}
-
-.linkedin-icon:hover .linkedin-layer span:nth-child(5) {
-  opacity: 1;
-  transform: translate(20px, -20px);
-}
-
-.linkedin-layer span.linkedin-svg {
-  font-size: 30px;
-  line-height: 55px;
-  text-align: center;
+.social-btn .layer span.svg-icon {
   background: #08080c;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.linkedin-layer span.linkedin-svg svg {
-  fill: #0077B5;
-  width: 30px;
-  height: 30px;
+.social-btn .layer span.svg-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
-.linkedin-icon:hover .linkedin-layer span {
-  box-shadow: -1px 1px 3px #0077B5;
-}
-
-.linkedin-user {
+.social-btn .user {
   display: flex;
   gap: 10px;
 }
 
-.linkedin-img {
+.social-btn .img {
   width: 50px;
   height: 50px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
-  border: 1px solid #0077B5;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
-  color: #0077B5;
 }
 
-.linkedin-name {
+.social-btn .name {
   font-size: 17px;
   font-weight: 700;
-  color: #0077B5;
 }
 
-.linkedin-details {
+.social-btn .details {
   display: flex;
   flex-direction: column;
-  gap: 0;
   color: #fff;
 }
 
-.linkedin-about {
+.social-btn .about {
   color: #ccc;
   padding-top: 5px;
   font-size: 14px;
 }
+
+/* LinkedIn - Blue */
+.social-btn.linkedin { --accent: #0077B5; }
+.social-btn.linkedin .profile { border: 1px solid rgba(0, 119, 181, 0.5); }
+.social-btn.linkedin .layer span { border: 1px solid var(--accent); }
+.social-btn.linkedin .text { color: var(--accent); }
+.social-btn.linkedin .img { border: 1px solid var(--accent); color: var(--accent); }
+.social-btn.linkedin .name { color: var(--accent); }
+.social-btn.linkedin .layer span.svg-icon svg { fill: var(--accent); }
+.social-btn.linkedin .icon:hover .layer span { box-shadow: -1px 1px 3px var(--accent); }
+
+/* Email - Red */
+.social-btn.email { --accent: #EA4335; }
+.social-btn.email .profile { border: 1px solid rgba(234, 67, 53, 0.5); }
+.social-btn.email .layer span { border: 1px solid var(--accent); }
+.social-btn.email .text { color: var(--accent); }
+.social-btn.email .img { border: 1px solid var(--accent); color: var(--accent); }
+.social-btn.email .name { color: var(--accent); }
+.social-btn.email .layer span.svg-icon svg { fill: var(--accent); }
+.social-btn.email .icon:hover .layer span { box-shadow: -1px 1px 3px var(--accent); }
+
+/* LTech - Cyan */
+.social-btn.ltech { --accent: #06B6D4; }
+.social-btn.ltech .profile { border: 1px solid rgba(6, 182, 212, 0.5); }
+.social-btn.ltech .layer span { border: 1px solid var(--accent); }
+.social-btn.ltech .text { color: var(--accent); }
+.social-btn.ltech .img { border: 1px solid var(--accent); color: var(--accent); }
+.social-btn.ltech .name { color: var(--accent); }
+.social-btn.ltech .layer span.svg-icon svg { fill: var(--accent); }
+.social-btn.ltech .icon:hover .layer span { box-shadow: -1px 1px 3px var(--accent); }
+
+/* Zeroplex - Purple */
+.social-btn.zeroplex { --accent: #8B5CF6; }
+.social-btn.zeroplex .profile { border: 1px solid rgba(139, 92, 246, 0.5); }
+.social-btn.zeroplex .layer span { border: 1px solid var(--accent); }
+.social-btn.zeroplex .text { color: var(--accent); }
+.social-btn.zeroplex .img { border: 1px solid var(--accent); color: var(--accent); }
+.social-btn.zeroplex .name { color: var(--accent); }
+.social-btn.zeroplex .layer span.svg-icon svg { fill: var(--accent); }
+.social-btn.zeroplex .icon:hover .layer span { box-shadow: -1px 1px 3px var(--accent); }
 
 /* Subtle noise texture - barely visible */
 .noise {
